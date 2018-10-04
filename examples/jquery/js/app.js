@@ -1,38 +1,38 @@
 /*global jQuery, Handlebars, Router */
-jQuery(function ($) {
-	'use strict';
+jQuery(function ($) { //  // Is all of this contained within a jquery function?
+	'use strict'; // Common phrase to keep syntax rules enforced.
 
-	Handlebars.registerHelper('eq', function (a, b, options) {
+	Handlebars.registerHelper('eq', function (a, b, options) { // Calling on a method of handlebars, checks if two things are equal and does one of two things.
 		return a === b ? options.fn(this) : options.inverse(this);
 	});
 
-	var ENTER_KEY = 13;
+	var ENTER_KEY = 13; // These are odd, the numbers seem arbitrary, are variables often capitalized?
 	var ESCAPE_KEY = 27;
 
 	var util = {
 		uuid: function () {
 			/*jshint bitwise:false */
-			var i, random;
-			var uuid = '';
+			var i, random; // Set up two variables we're going to use.
+			var uuid = ''; // THe whole purpose is to create a random ID it looks like
 
-			for (i = 0; i < 32; i++) {
-				random = Math.random() * 16 | 0;
-				if (i === 8 || i === 12 || i === 16 || i === 20) {
+			for (i = 0; i < 32; i++) { // So 31 times do the following...
+				random = Math.random() * 16 | 0; // Get a random number between 1 and 16.
+				if (i === 8 || i === 12 || i === 16 || i === 20) { // Id gets a - after every 8,12,16,20 digits like 12345678-1234-1234-1234-123456789... 
 					uuid += '-';
 				}
-				uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16);
+				uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16); // Odd, this globs things on to the id, can't tell if its extra randomization or using what's already random.
 			}
 
-			return uuid;
+			return uuid; // So util.uuid creates a random 32 digit id.
 		},
-		pluralize: function (count, word) {
-			return count === 1 ? word : word + 's';
+		pluralize: function (count, word) { // Take a count, and a word)
+			return count === 1 ? word : word + 's'; // Is the count equal to 1? If not, add an s! Simple enough.
 		},
-		store: function (namespace, data) {
-			if (arguments.length > 1) {
-				return localStorage.setItem(namespace, JSON.stringify(data));
-			} else {
-				var store = localStorage.getItem(namespace);
+		store: function (namespace, data) { // Take a namespace and data
+			if (arguments.length > 1) { // If there's more than 1 argument (if there is data?)
+				return localStorage.setItem(namespace, JSON.stringify(data)); // Store the name in data?
+			} else { // Otherwise
+				var store = localStorage.getItem(namespace); // Access what's already in storage.
 				return (store && JSON.parse(store)) || [];
 			}
 		}
@@ -192,5 +192,5 @@ jQuery(function ($) {
 		}
 	};
 
-	App.init();
+	App.init(); // This is like our initializeView function we had, basic setup tool. Seems common to have it at the end.
 });
