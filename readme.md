@@ -1,6 +1,6 @@
 # ![TodoMVC](media/logo.png)
 
-> Helping you select an MV\* framework
+> Helping you select an MV\* frameworka
 
 ### [Website](http://todomvc.com)&nbsp;&nbsp;&nbsp;&nbsp;[Blog](http://blog.tastejs.com)&nbsp;&nbsp;&nbsp;&nbsp;[TasteJS](http://tastejs.com)
 
