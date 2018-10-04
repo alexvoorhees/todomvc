@@ -11,48 +11,48 @@
 		<section id="todoapp"> // The heart of the app is right here, from the title to the bottom of the UL.
 			<header id="header">
 				<h1>todos</h1>
-				<input id="new-todo" placeholder="What needs to be don't?" autofocus>
+				<input id="new-todo" placeholder="What needs to be don't?" autofocus> // Placeholder text, autofocus attribute is nifty seem
 			</header>
-			<section id="main">
-				<input id="toggle-all" type="checkbox">
-				<label for="toggle-all">Mark all as complete</label>
-				<ul id="todo-list"></ul>
+			<section id="main"> // Using "section" as the markup instead of div
+				<input id="toggle-all" type="checkbox"> // Curious, I'd have just made this a button, im not sure the advantage of making a 1 item checkbox
+				<label for="toggle-all">Mark all as complete</label> // Not sure where this label appears
+				<ul id="todo-list"></ul> // Just like in PJS, here's where new elements will be added.
 			</section>
-			<footer id="footer"></footer>
+			<footer id="footer"></footer> // Still has a footer, even if its never used?
 		</section>
-		<footer id="info">
+		<footer id="info"> // A second footer, extra odd...
 			<p>Double-click to edit a todo</p>
 			<p>Created by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
 			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 		</footer>
-		<script id="todo-template" type="text/x-handlebars-template">
-			{{#this}}
-			<li {{#if completed}}class="completed"{{/if}} data-id="{{id}}">
-				<div class="view">
+		<script id="todo-template" type="text/x-handlebars-template"> // So here's the first script we've seen...
+			{{#this}} // The # sign is interesting, ID related?, double brackets looks like some kind of way to slip code into HTML
+			<li {{#if completed}}class="completed"{{/if}} data-id="{{id}}"> // It looks like parts of the html are conditional. Double brackets definitely slipping JS into HTML
+				<div class="view"> // View as a class, I would have thought it'd be an ID. But this div looks like the blueprint for a Todo.
 					<input class="toggle" type="checkbox" {{#if completed}}checked{{/if}}>
 					<label>{{title}}</label>
 					<button class="destroy"></button>
 				</div>
-				<input class="edit" value="{{title}}">
+				<input class="edit" value="{{title}}"> // Edit inputs...that's different, not baselines so they must have implemented it somehow
 			</li>
-		{{/this}}
+		{{/this}} // Extra weird, I guess everything above wasn't an external script, but a way to use handlebars to manage todos.
 		</script>
-		<script id="footer-template" type="text/x-handlebars-template">
-			<span id="todo-count"><strong>{{activeTodoCount}}</strong> {{activeTodoWord}} left</span>
-			<ul id="filters">
+		<script id="footer-template" type="text/x-handlebars-template"> // Similar to above, another handlebar script to handle the filters of todos.
+			<span id="todo-count"><strong>{{activeTodoCount}}</strong> {{activeTodoWord}} left</span> // Not too complixated, just text
+			<ul id="filters"> // Ahha, so it is thought of as filters, but its an id, not baseline.
 				<li>
-					<a {{#eq filter 'all'}}class="selected"{{/eq}} href="#/all">All</a>
+					<a {{#eq filter 'all'}}class="selected"{{/eq}} href="#/all">All</a> // Horizontal list, I should remember that's possible.
 				</li>
 				<li>
-					<a {{#eq filter 'active'}}class="selected"{{/eq}}href="#/active">Active</a>
+					<a {{#eq filter 'active'}}class="selected"{{/eq}}href="#/active">Active</a> // Wait the filter word is used on its own here, maybe it is baseline
 				</li>
 				<li>
-					<a {{#eq filter 'completed'}}class="selected"{{/eq}}href="#/completed">Completed</a>
+					<a {{#eq filter 'completed'}}class="selected"{{/eq}}href="#/completed">Completed</a> // Not sure what eq is. I guess it makes a new object?
 				</li>
 			</ul>
-			{{#if completedTodos}}<button id="clear-completed">Clear completed</button>{{/if}}
+			{{#if completedTodos}}<button id="clear-completed">Clear completed</button>{{/if}} // Simple button, but conditional, only appears if X is true
 		</script>
-		<script src="node_modules/todomvc-common/base.js"></script>
+		<script src="node_modules/todomvc-common/base.js"></script> // 5 more scripts loaded  here! It looks like node is core, and then jQuery, Handlebars, and 'director' are used extra.
 		<script src="node_modules/jquery/dist/jquery.js"></script>
 		<script src="node_modules/handlebars/dist/handlebars.js"></script>
 		<script src="node_modules/director/build/director.js"></script>
